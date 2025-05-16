@@ -24,7 +24,8 @@ msg_ok "Installed Splunk Enterprise"
 msg_info "Creating Splunk admin user"
 # Define the target directory and file
 USERNAME="admin"
-PASSWORD="$(openssl rand -base64 18 | tr -dc 'a-zA-Z0-9' | head -c13)"
+PASSWORD="Splunk@123"
+#PASSWORD="$(openssl rand -base64 18 | tr -dc 'a-zA-Z0-9' | head -c13)"
 TARGET_DIR="/opt/splunk/etc/system/local"
 TARGET_FILE="${TARGET_DIR}/user-seed.conf"
 cat > "$TARGET_FILE" << EOF
