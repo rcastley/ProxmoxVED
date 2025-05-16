@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 source <(curl -fsSL https://raw.githubusercontent.com/rcastley/ProxmoxVED/refs/heads/splunk-enterprise/misc/build.func)
 # Copyright (c) 2021-2025 tteck
-# Author: tteck (tteckster)
+# Author: rcastley
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
-# Source: https://www.ispyconnect.com/
+# Source: https://www.splunk.com/en_us/download/splunk-enterprise.html
 
 APP="Splunk"
 var_tags="${var_tags:-monitoring}"
@@ -12,7 +12,7 @@ var_ram="${var_ram:-4096}"
 var_disk="${var_disk:-10}"
 var_os="${var_os:-ubuntu}"
 var_version="${var_version:-22.04}"
-var_unprivileged="${var_unprivileged:-0}"
+var_unprivileged="${var_unprivileged:-1}"
 
 header_info "$APP"
 variables
