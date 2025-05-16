@@ -1,0 +1,35 @@
+{
+    "name": "Splunk Enterprise",
+    "slug": "splunk",
+    "categories": [
+        9
+    ],
+    "date_created": "2025-05-16",
+    "type": "ct",
+    "updateable": false,
+    "privileged": false,
+    "interface_port": 8000,
+    "documentation": "https://docs.splunk.com",
+    "config_path": "",
+    "website": "https://splunk.com",
+    "logo": null,
+    "description": "Index 500 MB/Day. Sign up and download now. After 60 days you can convert to a perpetual free license or purchase a Splunk Enterprise license to continue using the expanded functionality designed for enterprise-scale deployments.",
+    "install_methods": [
+        {
+            "type": "default",
+            "script": "ct/splunk.sh",
+            "resources": {
+                "cpu": 2,
+                "ram": 4096,
+                "hdd": 10,
+                "os": "Ubuntu",
+                "version": "22.04"
+            }
+        }
+    ],
+    "default_credentials": {
+        "username": "admin",
+        "password": "webracin"
+    },
+    "notes": []
+}
