@@ -13,7 +13,7 @@
     "config_path": "",
     "website": "https://splunk.com",
     "logo": "https://avatars.githubusercontent.com/u/651467?s=200&v=4",
-    "description": "Index 500 MB/Day. Sign up and download now. After 60 days you can convert to a perpetual free license or purchase a Splunk Enterprise license to continue using the expanded functionality designed for enterprise-scale deployments.",
+    "description": "Search, analysis and visualization for actionable insights from all of your data.",
     "install_methods": [
         {
             "type": "default",
@@ -28,8 +28,8 @@
         }
     ],
     "default_credentials": {
-        "username": "admin",
-        "password": "Splunk@123"
+        "username": null,
+        "password": null
     },
     "notes": []
 }
