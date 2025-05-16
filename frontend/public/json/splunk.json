@@ -12,7 +12,7 @@
     "documentation": "https://docs.splunk.com",
     "config_path": "",
     "website": "https://splunk.com",
-    "logo": null,
+    "logo": "https://avatars.githubusercontent.com/u/651467?s=200&v=4",
     "description": "Index 500 MB/Day. Sign up and download now. After 60 days you can convert to a perpetual free license or purchase a Splunk Enterprise license to continue using the expanded functionality designed for enterprise-scale deployments.",
     "install_methods": [
         {
