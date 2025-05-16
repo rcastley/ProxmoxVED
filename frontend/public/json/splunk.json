@@ -28,8 +28,8 @@
         }
     ],
     "default_credentials": {
-        "username": "admin",
-        "password": "webracin"
+        "username": null,
+        "password": null
     },
     "notes": []
 }
