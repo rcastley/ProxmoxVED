@@ -21,11 +21,11 @@ msg_info "Installing Splunk Enterprise"
 wget -qO splunk-9.4.2-e9664af3d956-linux-amd64.deb "https://download.splunk.com/products/splunk/releases/9.4.2/linux/splunk-9.4.2-e9664af3d956-linux-amd64.deb"
 $STD dpkg -i splunk-9.4.2-e9664af3d956-linux-amd64.deb
 msg_ok "Installed Splunk Enterprise"
+
 msg_info "Creating Splunk admin user"
 # Define the target directory and file
 USERNAME="admin"
-PASSWORD="Splunk@123"
-#PASSWORD="$(openssl rand -base64 18 | tr -dc 'a-zA-Z0-9' | head -c13)"
+PASSWORD="$(openssl rand -base64 18 | tr -dc 'a-zA-Z0-9' | head -c13)"
 TARGET_DIR="/opt/splunk/etc/system/local"
 TARGET_FILE="${TARGET_DIR}/user-seed.conf"
 cat > "$TARGET_FILE" << EOF
@@ -39,6 +39,7 @@ EOF
   echo "Admin Password: $PASSWORD"
 } >>~/splunk-enterprise.creds
 msg_ok "Created Splunk admin user"
+
 msg_info "Starting Splunk Enterprise"
 $STD /opt/splunk/bin/splunk start --accept-license --answer-yes --no-prompt
 msg_ok "Splunk Enterprise started"
