@@ -17,9 +17,42 @@ msg_info "Installing Dependencies"
 $STD apt-get install -y curl wget
 msg_ok "Installed Dependencies"
 
+# Function to validate URL
+validate_url() {
+    local url=$1
+    # Check if the URL is accessible
+    if curl --output /dev/null --silent --head --fail "$url"; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+# Prompt for Splunk download URL
+echo -n "Enter Splunk Enterprise download URL: "
+read SPLUNK_URL
+
+# Validate the URL
+msg_info "Validating download URL"
+if ! validate_url "$SPLUNK_URL"; then
+    msg_error "Invalid URL or URL not accessible. Exiting..."
+    exit 1
+fi
+msg_ok "URL validated successfully"
+
+# Extract filename from URL
+SPLUNK_FILENAME=$(basename "$SPLUNK_URL")
+
 msg_info "Installing Splunk Enterprise"
-wget -qO splunk-9.4.2-e9664af3d956-linux-amd64.deb "https://download.splunk.com/products/splunk/releases/9.4.2/linux/splunk-9.4.2-e9664af3d956-linux-amd64.deb"
-$STD dpkg -i splunk-9.4.2-e9664af3d956-linux-amd64.deb
+if ! wget -q -O "$SPLUNK_FILENAME" "$SPLUNK_URL"; then
+    msg_error "Download failed. Exiting..."
+    exit 1
+fi
+
+if ! $STD dpkg -i "$SPLUNK_FILENAME"; then
+    msg_error "Installation failed. Exiting..."
+    exit 1
+fi
 msg_ok "Installed Splunk Enterprise"
 
 msg_info "Creating Splunk admin user"
@@ -50,4 +83,5 @@ customize
 msg_info "Cleaning up"
 $STD apt-get -y autoremove
 $STD apt-get -y autoclean
+$STD rm -f "$SPLUNK_FILENAME"
 msg_ok "Cleaned"
