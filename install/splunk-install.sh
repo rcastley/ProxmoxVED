@@ -28,11 +28,29 @@ validate_url() {
     fi
 }
 
+# Function to validate .deb URL
+validate_deb_url() {
+    local url=$1
+    # Check if the URL ends with .deb
+    if [[ "$url" != *".deb" ]]; then
+        return 1
+    fi
+    return 0
+}
+
 # Prompt for Splunk download URL
-echo -n "Enter Splunk Enterprise download URL: "
+echo -n "Enter Splunk Enterprise .deb download URL: "
 read SPLUNK_URL
 
-# Validate the URL
+# Validate the URL is a .deb file
+msg_info "Checking if URL is for a .deb package"
+if ! validate_deb_url "$SPLUNK_URL"; then
+    msg_error "URL does not point to a .deb file. Please provide a valid .deb URL. Exiting..."
+    exit 1
+fi
+msg_ok "URL is for a .deb package"
+
+# Validate the URL is accessible
 msg_info "Validating download URL"
 if ! validate_url "$SPLUNK_URL"; then
     msg_error "Invalid URL or URL not accessible. Exiting..."
