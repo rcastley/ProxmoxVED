@@ -13,29 +13,34 @@ setting_up_container
 network_check
 update_os
 
+extract_filename_sed() {
+    local wget_cmd="$1"
+    echo "$wget_cmd" | sed -n 's/.*-O \([^ ]*\).*/\1/p'
+}
+
 msg_info "Installing Dependencies"
-$STD apt-get install -y curl
+$STD apt-get install -y wget
 msg_ok "Installed Dependencies"
 
-read -p "${TAB3}Enter the .deb download link for Splunk Enterprise: " SPLUNK_DEB_URL
+read -p "${TAB3}Enter the wget link for the .deb distribution of Splunk Enterprise: " SPLUNK_DEB_URL
 
 msg_info "Downloading Splunk Enterprise"
 if [[ -z "$SPLUNK_DEB_URL" ]]; then
     msg_error "No download link provided. Exiting."
     exit 1
 fi
-curl -fsSL "$SPLUNK_DEB_URL" -o splunk-enterprise.deb || {
+$SPLUNK_DEB_URL || {
     msg_error "Failed to download Splunk Enterprise from the provided link."
     exit 1
 }
-if [[ ! -f splunk-enterprise.deb ]]; then
-    msg_error "Downloaded file not found. Please check the download link."
-    exit 1
-fi
+FILENAME=$(extract_filename_sed "$SPLUNK_DEB_URL")
 msg_ok "Downloaded Splunk Enterprise"
 
 msg_info "Installing Splunk Enterprise"
-$STD dpkg -i splunk-enterprise.deb
+$STD dpkg -i "$FILENAME" || {
+    msg_error "Failed to install Splunk Enterprise. Please check the .deb file."
+    exit 1
+}
 msg_ok "Installed Splunk Enterprise"
 
 msg_info "Creating Splunk admin user"
