@@ -21,7 +21,7 @@
             "resources": {
                 "cpu": 2,
                 "ram": 406,
-                "hdd": 10,
+                "hdd": 20,
                 "os": "Ubuntu",
                 "version": "22.04"
             }
