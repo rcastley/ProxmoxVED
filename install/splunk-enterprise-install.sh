@@ -22,7 +22,7 @@ msg_info "Installing Dependencies"
 $STD apt-get install -y wget
 msg_ok "Installed Dependencies"
 
-read -p "${TAB3}Enter the wget link for the .deb distribution of Splunk Enterprise: " SPLUNK_DEB_URL
+read -p "${TAB3}Enter the Linux wget link for the .deb distribution of Splunk Enterprise: " SPLUNK_DEB_URL
 
 msg_info "Downloading Splunk Enterprise"
 if [[ -z "$SPLUNK_DEB_URL" ]]; then
