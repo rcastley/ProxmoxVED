@@ -15,8 +15,6 @@ variables() {
   CT_TYPE=${var_unprivileged:-$CT_TYPE}
 }
 
-echo $NSAPP
-
 source <(curl -fsSL https://raw.githubusercontent.com/rcastley/ProxmoxVED/refs/heads/splunk-enterprise/misc/api.func)
 
 if command -v curl >/dev/null 2>&1; then
@@ -1071,7 +1069,7 @@ EOF
   fi
 
   # This starts the container and executes <app>-install.sh
-  msg_info "Starting LXC Container"
+  msg_info "Starting LXC Container $var_install"
   pct start "$CTID"
   msg_ok "Started LXC Container"
   msg_info "Customizing LXC Container"
