@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 #source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/build.func)
-source <(curl -s https://raw.githubusercontent.com/rcastley/ProxmoxVE/refs/heads/splunk-enterprise/misc/build.func)
+source <(curl -s https://raw.githubusercontent.com/rcastley/ProxmoxVED/refs/heads/splunk-enterprise/misc/build.func)
 # Copyright (c) 2021-2025 tteck
 # Author: rcastley
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
 # Source: https://www.splunk.com/en_us/download.html
 
+# bash -c "$(curl -fsSL https://raw.githubusercontent.com/rcastley/ProxmoxVED/splunk-enterprise/ct/splunk-enterprise.sh)"
 APP="Splunk Enterprise"
 var_tags="${var_tags:-monitoring}"
 var_cpu="${var_cpu:-2}"
