@@ -6,7 +6,7 @@ source <(curl -s https://raw.githubusercontent.com/rcastley/ProxmoxVED/refs/head
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
 # Source: https://www.splunk.com/en_us/download.html
 
-# bash -c "$(curl -fsSL https://raw.githubusercontent.com/rcastley/ProxmoxVED/splunk-enterprise/ct/splunk-enterprise.sh)"
+# bash -c "$(curl -fsSL https://raw.githubusercontent.com/rcastley/ProxmoxVED/refs/heads/splunk-enterprise/ct/splunk-enterprise.sh)"
 APP="Splunk Enterprise"
 var_tags="${var_tags:-monitoring}"
 var_cpu="${var_cpu:-2}"
