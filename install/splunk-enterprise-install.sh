@@ -29,7 +29,7 @@ if [[ -z "$SPLUNK_DEB_URL" ]]; then
     msg_error "No download link provided. Exiting."
     exit 1
 fi
-$STD eval $SPLUNK_DEB_URL || {
+$STD eval $SPLUNK_DEB_URL -q || {
     msg_error "Failed to download Splunk Enterprise from the provided link."
     exit 1
 }
