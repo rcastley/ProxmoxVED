@@ -7,7 +7,7 @@ source <(curl -s https://raw.githubusercontent.com/rcastley/ProxmoxVED/refs/head
 # Source: https://www.splunk.com/en_us/download.html
 
 # bash -c "$(curl -fsSL https://raw.githubusercontent.com/rcastley/ProxmoxVED/refs/heads/splunk-enterprise/ct/splunk-enterprise.sh)"
-APP="Splunk Enterprise"
+APP="Splunk-Enterprise"
 var_tags="${var_tags:-monitoring}"
 var_cpu="${var_cpu:-2}"
 var_ram="${var_ram:-4096}"
