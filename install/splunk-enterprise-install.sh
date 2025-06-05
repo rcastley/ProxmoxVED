@@ -63,6 +63,7 @@ EOF
 msg_ok "Created Splunk admin user"
 
 msg_info "Starting Splunk Enterprise"
+$STD /opt/splunk/bin/splunk enable boot-start
 $STD /opt/splunk/bin/splunk start --accept-license --answer-yes --no-prompt
 msg_ok "Splunk Enterprise started"
 
@@ -70,6 +71,7 @@ motd_ssh
 customize
 
 msg_info "Cleaning up"
+$STD rm -f "$FILENAME"
 $STD apt-get -y autoremove
 $STD apt-get -y autoclean
 msg_ok "Cleaned"
