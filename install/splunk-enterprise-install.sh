@@ -63,8 +63,8 @@ EOF
 msg_ok "Created Splunk admin user"
 
 msg_info "Starting Splunk Enterprise"
-$STD /opt/splunk/bin/splunk enable boot-start
 $STD /opt/splunk/bin/splunk start --accept-license --answer-yes --no-prompt
+$STD /opt/splunk/bin/splunk enable boot-start
 msg_ok "Splunk Enterprise started"
 
 motd_ssh
