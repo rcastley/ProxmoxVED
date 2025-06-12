@@ -13,12 +13,9 @@ setting_up_container
 network_check
 update_os
 
-get_latest_version() {
-    URL="https://www.splunk.com/en_us/download/splunk-enterprise.html"
-    DEB_URL=$(curl -s "$URL" | grep -o 'data-link="[^"]*' | sed 's/data-link="//' | \
-    grep "https.*products/splunk/releases" | \
-    grep "\.deb$")
-}
+URL="https://www.splunk.com/en_us/download/splunk-enterprise.html"
+
+DEB_URL=$(curl -s "$URL" | grep -o 'data-link="[^"]*' | sed 's/data-link="//' | grep "https.*products/splunk/releases" | grep "\.deb$")
 
 msg_info "Installing Dependencies"
 $STD apt-get install -y curl
