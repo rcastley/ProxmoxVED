@@ -22,7 +22,7 @@ echo -e "${TAB3}Before proceeding with the Splunk Enterprise installation, you m
 echo -e "${TAB3}review and accept the Splunk General Terms."
 echo ""
 echo -e "${TAB3}Please review the terms at:"
-echo -e "${TAB3}${GATEWAY}${BGN}https://www.splunk.com/en_us/legal/splunk-general-terms.html${CL}"
+echo -e "${GATEWAY}${BGN}https://www.splunk.com/en_us/legal/splunk-general-terms.html${CL}"
 echo ""
 
 while true; do
