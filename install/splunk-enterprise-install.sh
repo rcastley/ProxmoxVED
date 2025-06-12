@@ -22,7 +22,7 @@ echo -e "${TAB3}Before proceeding with the Splunk Enterprise installation, you m
 echo -e "${TAB3}review and accept the Splunk General Terms."
 echo ""
 echo -e "${TAB3}Please review the terms at:"
-echo -e "${GATEWAY}${BGN}https://www.splunk.com/en_us/legal/splunk-general-terms.html${CL}"
+echo -e "${TAB}${GATEWAY}${BGN}https://www.splunk.com/en_us/legal/splunk-general-terms.html${CL}"
 echo ""
 
 while true; do
@@ -35,7 +35,7 @@ while true; do
             ;;
         [Nn]|[Nn][Oo]|"")
             msg_error "Terms not accepted. Installation cannot proceed."
-            msg_warn "Please review the terms and run the script again if you wish to proceed."
+            msg_info "Please review the terms and run the script again if you wish to proceed."
             exit 1
             ;;
         *)
