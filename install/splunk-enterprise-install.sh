@@ -13,31 +13,26 @@ setting_up_container
 network_check
 update_os
 
-extract_filename_sed() {
-    local wget_cmd="$1"
-    echo "$wget_cmd" | sed -n 's/.*-O \([^ ]*\).*/\1/p'
+get_latest_version() {
+    URL="https://www.splunk.com/en_us/download/splunk-enterprise.html"
+    DEB_URL=$(curl -s "$URL" | grep -o 'data-link="[^"]*' | sed 's/data-link="//' | \
+    grep "https.*products/splunk/releases" | \
+    grep "\.deb$")
 }
 
 msg_info "Installing Dependencies"
-$STD apt-get install -y wget
+$STD apt-get install -y curl
 msg_ok "Installed Dependencies"
 
-read -p "${TAB3}Enter the Linux wget link for the .deb distribution of Splunk Enterprise: " SPLUNK_DEB_URL
-
 msg_info "Downloading Splunk Enterprise"
-if [[ -z "$SPLUNK_DEB_URL" ]]; then
-    msg_error "No download link provided. Exiting."
-    exit 1
-fi
-$STD eval $SPLUNK_DEB_URL -q || {
+$STD curl -fsSL -o splunk-enterprise.deb $DEB_URL || {
     msg_error "Failed to download Splunk Enterprise from the provided link."
     exit 1
 }
-FILENAME=$(extract_filename_sed "$SPLUNK_DEB_URL")
 msg_ok "Downloaded Splunk Enterprise"
 
 msg_info "Installing Splunk Enterprise"
-$STD dpkg -i "$FILENAME" || {
+$STD dpkg -i splunk-enterprise.deb || {
     msg_error "Failed to install Splunk Enterprise. Please check the .deb file."
     exit 1
 }
@@ -71,7 +66,7 @@ motd_ssh
 customize
 
 msg_info "Cleaning up"
-$STD rm -f "$FILENAME"
+$STD rm -f splunk-enterprise.deb
 $STD apt-get -y autoremove
 $STD apt-get -y autoclean
 msg_ok "Cleaned"
