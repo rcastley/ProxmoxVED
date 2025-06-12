@@ -16,12 +16,13 @@ update_os
 URL="https://www.splunk.com/en_us/download/splunk-enterprise.html"
 
 DEB_URL=$(curl -s "$URL" | grep -o 'data-link="[^"]*' | sed 's/data-link="//' | grep "https.*products/splunk/releases" | grep "\.deb$")
+VERSION=$(echo "$DEB_URL" | sed 's|.*/releases/\([^/]*\)/.*|\1|')
 
 msg_info "Installing Dependencies"
 $STD apt-get install -y curl
 msg_ok "Installed Dependencies"
 
-msg_info "Downloading Splunk Enterprise"
+msg_info "Downloading Splunk Enterprise - Version: $VERSION"
 $STD curl -fsSL -o splunk-enterprise.deb $DEB_URL || {
     msg_error "Failed to download Splunk Enterprise from the provided link."
     exit 1
@@ -33,7 +34,7 @@ $STD dpkg -i splunk-enterprise.deb || {
     msg_error "Failed to install Splunk Enterprise. Please check the .deb file."
     exit 1
 }
-msg_ok "Installed Splunk Enterprise"
+msg_ok "Installed Splunk Enterprise - Version: $VERSION"
 
 msg_info "Creating Splunk admin user"
 # Define the target directory and file
