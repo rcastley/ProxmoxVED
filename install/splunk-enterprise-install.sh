@@ -14,33 +14,32 @@ network_check
 update_os
 
 # Prompt user to accept Splunk General Terms
-echo -e "\033[1;33m┌─────────────────────────────────────────────────────────────────────────┐\033[0m"
-echo -e "\033[1;33m│                          SPLUNK GENERAL TERMS                           │\033[0m"
-echo -e "\033[1;33m└─────────────────────────────────────────────────────────────────────────┘\033[0m"
+echo -e "${TAB3}┌─────────────────────────────────────────────────────────────────────────┐"
+echo -e "${TAB3}│                          SPLUNK GENERAL TERMS                           │"
+echo -e "${TAB3}└─────────────────────────────────────────────────────────────────────────┘"
 echo ""
-echo -e "\033[1;37mBefore proceeding with the Splunk Enterprise installation, you must\033[0m"
-echo -e "\033[1;37mreview and accept the Splunk General Terms.\033[0m"
+echo -e "${TAB3}Before proceeding with the Splunk Enterprise installation, you must"
+echo -e "${TAB3}review and accept the Splunk General Terms."
 echo ""
-echo -e "\033[1;36mPlease review the terms at:\033[0m"
-echo -e "\033[1;34mhttps://www.splunk.com/en_us/legal/splunk-general-terms.html\033[0m"
+echo -e "${TAB3}Please review the terms at:"
+echo -e "${TAB3}${GATEWAY}${BGN}https://www.splunk.com/en_us/legal/splunk-general-terms.html${CL}"
 echo ""
 
 while true; do
-    echo -e "\033[1;37mDo you accept the Splunk General Terms? (y/N): \033[0m\c"
+    echo -e "${TAB3}Do you accept the Splunk General Terms? (y/N): \c"
     read -r response
     case $response in
         [Yy]|[Yy][Ee][Ss])
-            echo -e "\033[1;32m✓ Terms accepted. Proceeding with installation...\033[0m"
-            echo ""
+            msg_ok "Terms accepted. Proceeding with installation..."
             break
             ;;
         [Nn]|[Nn][Oo]|"")
-            echo -e "\033[1;31m✗ Terms not accepted. Installation cannot proceed.\033[0m"
-            echo -e "\033[1;33mPlease review the terms and run the script again if you wish to proceed.\033[0m"
+            msg_error "Terms not accepted. Installation cannot proceed."
+            msg_warn "Please review the terms and run the script again if you wish to proceed."
             exit 1
             ;;
         *)
-            echo -e "\033[1;31mInvalid response. Please enter 'y' for yes or 'n' for no.\033[0m"
+            msg_error "Invalid response. Please enter 'y' for yes or 'n' for no."
             ;;
     esac
 done
