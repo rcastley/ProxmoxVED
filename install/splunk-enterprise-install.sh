@@ -14,19 +14,19 @@ network_check
 update_os
 
 # Prompt user to accept Splunk General Terms
-echo -e "${TAB3}┌─────────────────────────────────────────────────────────────────────────┐"
-echo -e "${TAB3}│                          SPLUNK GENERAL TERMS                           │"
-echo -e "${TAB3}└─────────────────────────────────────────────────────────────────────────┘"
+echo -e "${TAB}┌─────────────────────────────────────────────────────────────────────────┐"
+echo -e "${TAB}│                          SPLUNK GENERAL TERMS                           │"
+echo -e "${TAB}└─────────────────────────────────────────────────────────────────────────┘"
 echo ""
-echo -e "${TAB3}Before proceeding with the Splunk Enterprise installation, you must"
-echo -e "${TAB3}review and accept the Splunk General Terms."
+echo -e "${TAB}Before proceeding with the Splunk Enterprise installation, you must"
+echo -e "${TAB}review and accept the Splunk General Terms."
 echo ""
-echo -e "${TAB3}Please review the terms at:"
+echo -e "${INFO}${YW}Please review the terms at:${CL}"
 echo -e "${TAB}${GATEWAY}${BGN}https://www.splunk.com/en_us/legal/splunk-general-terms.html${CL}"
 echo ""
 
 while true; do
-    echo -e "${TAB3}Do you accept the Splunk General Terms? (y/N): \c"
+    echo -e "${TAB}Do you accept the Splunk General Terms? (y/N): \c"
     read -r response
     case $response in
         [Yy]|[Yy][Ee][Ss])
@@ -35,7 +35,7 @@ while true; do
             ;;
         [Nn]|[Nn][Oo]|"")
             msg_error "Terms not accepted. Installation cannot proceed."
-            msg_info "Please review the terms and run the script again if you wish to proceed."
+            msg_error "Please review the terms and run the script again if you wish to proceed."
             exit 1
             ;;
         *)
