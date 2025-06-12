@@ -14,15 +14,15 @@ network_check
 update_os
 
 # Prompt user to accept Splunk General Terms
-echo -e "${TAB}┌─────────────────────────────────────────────────────────────────────────┐"
-echo -e "${TAB}│                          SPLUNK GENERAL TERMS                           │"
-echo -e "${TAB}└─────────────────────────────────────────────────────────────────────────┘"
+echo -e "${TAB3}┌─────────────────────────────────────────────────────────────────────────┐"
+echo -e "${TAB3}│                          SPLUNK GENERAL TERMS                           │"
+echo -e "${TAB3}└─────────────────────────────────────────────────────────────────────────┘"
 echo ""
-echo -e "${TAB}Before proceeding with the Splunk Enterprise installation, you must"
-echo -e "${TAB}review and accept the Splunk General Terms."
+echo -e "${TAB3}Before proceeding with the Splunk Enterprise installation, you must"
+echo -e "${TAB3}review and accept the Splunk General Terms."
 echo ""
-echo -e "${INFO}${YW}Please review the terms at:${CL}"
-echo -e "${TAB}${GATEWAY}${BGN}https://www.splunk.com/en_us/legal/splunk-general-terms.html${CL}"
+echo -e "${TAB3}${YW}Please review the terms at:${CL}"
+echo -e "${TAB3}${GATEWAY}${BGN}https://www.splunk.com/en_us/legal/splunk-general-terms.html${CL}"
 echo ""
 
 while true; do
