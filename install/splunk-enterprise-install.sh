@@ -44,87 +44,32 @@ while true; do
     esac
 done
 
-# Prompt user to choose between stable and beta version
-echo ""
-echo -e "${TAB3}┌─────────────────────────────────────────────────────────────────────────┐"
-echo -e "${TAB3}│                         VERSION SELECTION                               │"
-echo -e "${TAB3}└─────────────────────────────────────────────────────────────────────────┘"
-echo ""
-echo -e "${TAB3}Choose which version of Splunk Enterprise to install:"
-echo -e "${TAB3}  1) Stable release (latest production version)"
-echo -e "${TAB3}  2) Beta release (v10.0.0 - for testing purposes)"
-echo ""
-
-while true; do
-    echo -e "${TAB3}Enter your choice (1 for stable, 2 for beta) [1]: \c"
-    read -r version_choice
-    case $version_choice in
-        ""|1)
-            INSTALL_BETA=false
-            msg_ok "Selected stable release"
-            break
-            ;;
-        2)
-            INSTALL_BETA=true
-            msg_ok "Selected beta release"
-            break
-            ;;
-        *)
-            msg_error "Invalid choice. Please enter '1' for stable or '2' for beta."
-            ;;
-    esac
-done
-
-if [ "$INSTALL_BETA" = true ]; then
-    # Beta version
-    DEB_URL="https://download.splunk.com/products/splunk/beta/10.0.0-20250530/linux/splunkbeta-10.0.0-424dcd67496a-linux-amd64.deb"
-    VERSION="10.0.0-beta"
-    DEB_FILE="splunk-beta.deb"
-else
-    # Stable version
-    URL="https://www.splunk.com/en_us/download/splunk-enterprise.html"
-    DEB_URL=$(curl -s "$URL" | grep -o 'data-link="[^"]*' | sed 's/data-link="//' | grep "https.*products/splunk/releases" | grep "\.deb$")
-    VERSION=$(echo "$DEB_URL" | sed 's|.*/releases/\([^/]*\)/.*|\1|')
-    DEB_FILE="splunk-enterprise.deb"
-fi
+URL="https://www.splunk.com/en_us/download/splunk-enterprise.html"
+DEB_URL=$(curl -s "$URL" | grep -o 'data-link="[^"]*' | sed 's/data-link="//' | grep "https.*products/splunk/releases" | grep "\.deb$")
+VERSION=$(echo "$DEB_URL" | sed 's|.*/releases/\([^/]*\)/.*|\1|')
+DEB_FILE="splunk-enterprise.deb"
 
 msg_info "Installing Dependencies"
 $STD apt-get install -y curl
 msg_ok "Installed Dependencies"
 
-if [ "$INSTALL_BETA" = true ]; then
-    msg_info "Downloading Splunk Enterprise Beta"
-else
-    msg_info "Downloading Splunk Enterprise"
-fi
+msg_info "Downloading Splunk Enterprise"
 
 $STD curl -fsSL -o "$DEB_FILE" "$DEB_URL" || {
     msg_error "Failed to download Splunk Enterprise from the provided link."
     exit 1
 }
 
-if [ "$INSTALL_BETA" = true ]; then
-    msg_ok "Downloaded Splunk Enterprise Beta v${VERSION}"
-else
-    msg_ok "Downloaded Splunk Enterprise v${VERSION}"
-fi
+msg_ok "Downloaded Splunk Enterprise v${VERSION}"
 
-if [ "$INSTALL_BETA" = true ]; then
-    msg_info "Installing Splunk Enterprise Beta"
-else
-    msg_info "Installing Splunk Enterprise"
-fi
+msg_info "Installing Splunk Enterprise"
 
 $STD dpkg -i "$DEB_FILE" || {
     msg_error "Failed to install Splunk Enterprise. Please check the .deb file."
     exit 1
 }
 
-if [ "$INSTALL_BETA" = true ]; then
-    msg_ok "Installed Splunk Enterprise Beta v${VERSION}"
-else
-    msg_ok "Installed Splunk Enterprise v${VERSION}"
-fi
+msg_ok "Installed Splunk Enterprise v${VERSION}"
 
 msg_info "Creating Splunk admin user"
 # Define the target directory and file based on version
@@ -151,20 +96,12 @@ PASSWORD = $ADMIN_PASS
 EOF
 msg_ok "Created Splunk admin user"
 
-if [ "$INSTALL_BETA" = true ]; then
-    msg_info "Starting Splunk Enterprise Beta"
-else
-    msg_info "Starting Splunk Enterprise"
-fi
+msg_info "Starting Splunk Enterprise"
 
 $STD ${SPLUNK_HOME}/bin/splunk start --accept-license --answer-yes --no-prompt
 $STD ${SPLUNK_HOME}/bin/splunk enable boot-start
 
-if [ "$INSTALL_BETA" = true ]; then
-    msg_ok "Splunk Enterprise Beta started"
-else
-    msg_ok "Splunk Enterprise started"
-fi
+msg_ok "Splunk Enterprise started"
 
 motd_ssh
 customize
