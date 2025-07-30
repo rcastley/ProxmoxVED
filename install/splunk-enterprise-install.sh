@@ -73,11 +73,7 @@ msg_ok "Installed Splunk Enterprise v${VERSION}"
 
 msg_info "Creating Splunk admin user"
 # Define the target directory and file based on version
-if [ "$INSTALL_BETA" = true ]; then
-    SPLUNK_HOME="/opt/splunkbeta"
-else
-    SPLUNK_HOME="/opt/splunk"
-fi
+SPLUNK_HOME="/opt/splunk"
 
 TARGET_DIR="${SPLUNK_HOME}/etc/system/local"
 TARGET_FILE="${TARGET_DIR}/user-seed.conf"
