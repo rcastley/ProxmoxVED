@@ -53,7 +53,7 @@ $STD curl -fsSL -o "splunk-enterprise.deb" "$DOWNLOAD_URL" || {
     exit 1
 }
 $STD dpkg -i "splunk-enterprise.deb"
-rm -f "$DEB_FILE"
+rm -f "splunk-enterprise.deb"
 msg_ok "Setup Splunk Enterprise v${RELEASE}"
 
 msg_info "Creating Splunk admin user"
