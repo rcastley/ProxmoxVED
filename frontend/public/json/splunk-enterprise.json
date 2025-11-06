@@ -4,26 +4,26 @@
     "categories": [
         9
     ],
-    "date_created": "2025-06-03",
+    "date_created": "2025-11-06",
     "type": "ct",
     "updateable": false,
     "privileged": false,
     "interface_port": 8000,
-    "documentation": "https://help.splunk..com",
+    "documentation": "https://help.splunk.com",
     "config_path": "",
     "website": "https://www.splunk.com/en_us/download/splunk-enterprise.html",
     "logo": "https://www.splunk.com/content/dam/splunk2/en_us/images/icon-library/footer/logo-splunk-corp-rgb-k-web.svg",
-    "description": "Index 500 MB/Day. Sign up and install now. After 60 days you can convert to a perpetual free license or purchase a Splunk Enterprise license to continue using the expanded functionality designed for enterprise-scale deployments.",
+    "description": "Platform for searching, monitoring, and analyzing machine-generated data at scale for operational intelligence and security.",
     "install_methods": [
         {
             "type": "default",
             "script": "ct/splunk-enterprise.sh",
             "resources": {
-                "cpu": 2,
-                "ram": 4096,
-                "hdd": 20,
+                "cpu": 4,
+                "ram": 8192,
+                "hdd": 40,
                 "os": "Ubuntu",
-                "version": "22.04"
+                "version": "24.04"
             }
         }
     ],
@@ -33,11 +33,15 @@
     },
     "notes": [
         {
-            "text": "In order to install Splunk Enterprise you will need to sign-up for a free trial at https://www.splunk.com/en_us/download/splunk-enterprise.html. You will then need the Linux wget link for the .deb distribution of Splunk Enterprise.",
+            "text": "The credentials to login can be found in splunk.creds.",
             "type": "info"
         },
         {
-            "text": "The credentials to login can be found in application.creds.",
+            "text": "Trial license allows indexing 500 MB/Day. After 60 days you can convert to a perpetual free license or purchase a Splunk Enterprise license to continue using the expanded functionality designed for enterprise-scale deployments.",
+            "type": "warning"
+        },
+        {
+            "text": "About Splunk Free License: https://help.splunk.com/en/splunk-enterprise/administer/admin-manual/10.0/configure-splunk-licenses/about-splunk-free",
             "type": "info"
         }
     ]
