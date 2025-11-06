@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVED/main/misc/build.func)
-source <(curl -fsSL https://raw.githubusercontent.com/rcastley/ProxmoxVED/refs/heads/main/misc/build.func)
+source <(curl -fsSL https://raw.githubusercontent.com/rcastley/ProxmoxVED/refs/heads/splunk-enterprise/misc/build.func)
 # Copyright (c) 2021-2025 community-scripts ORG
 # Author: rcastley
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
