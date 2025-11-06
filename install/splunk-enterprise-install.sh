@@ -42,8 +42,10 @@ while true; do
     esac
 done
 
+msg_info "Getting Splunk Enterprise download link"
 DOWNLOAD_URL=$(curl -s "https://www.splunk.com/en_us/download/splunk-enterprise.html" | grep -o 'data-link="[^"]*' | sed 's/data-link="//' | grep "https.*products/splunk/releases" | grep "\.deb$")
 RELEASE=$(echo "$DOWNLOAD_URL" | sed 's|.*/releases/\([^/]*\)/.*|\1|')
+msg_ok "Got Splunk Enterprise v${RELEASE} download link"
 
 msg_info "Setup Splunk Enterprise"
 $STD curl -fsSL -o "splunk-enterprise.deb" "$DOWNLOAD_URL" || {
