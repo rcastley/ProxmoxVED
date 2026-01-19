@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright (c) 2021-2025 community-scripts ORG
+# Copyright (c) 2021-2026 community-scripts ORG
 # Author: rcastley
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
 # Source: https://www.splunk.com/en_us/download.html
@@ -51,8 +51,8 @@ $STD curl -fsSL -o "splunk-enterprise.tgz" "$DOWNLOAD_URL" || {
 }
 $STD tar -xzf "splunk-enterprise.tgz" -C /opt
 rm -f "splunk-enterprise.tgz"
-groupadd -r splunk
-useradd -r -s /bin/bash -d /opt/splunk -g splunk splunk
+addgroup --system splunk
+adduser --system --home /opt/splunk --shell /bin/bash --ingroup splunk --no-create-home splunk
 chown -R splunk:splunk /opt/splunk
 msg_ok "Setup Splunk Enterprise v${RELEASE}"
 
