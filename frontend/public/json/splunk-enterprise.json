@@ -4,7 +4,7 @@
     "categories": [
         9
     ],
-    "date_created": "2025-11-12",
+    "date_created": "2026-01-19",
     "type": "ct",
     "updateable": false,
     "privileged": false,
@@ -22,8 +22,8 @@
                 "cpu": 4,
                 "ram": 8192,
                 "hdd": 40,
-                "os": "Ubuntu",
-                "version": "24.04"
+                "os": "Debian",
+                "version": "13"
             }
         }
     ],
